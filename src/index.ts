@@ -1,3 +1,5 @@
-export default function simpleCalcToRemoveAfter(values: number[]): number {
-  return values.reduce((arr, current) => current + arr, 0);
-}
+import app from './app';
+
+app.listen(process.env.API_PORT, () => {
+  console.log(`2FA Manager API is now running on "http://localhost:${process.env.API_PORT}"`);
+});

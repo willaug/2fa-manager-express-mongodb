@@ -1,0 +1,5 @@
+- [ ] implement commitzen
+- [x] implement node env
+- [x] implement the express listen
+- [x] create app.js and index.js
+- [ ] 

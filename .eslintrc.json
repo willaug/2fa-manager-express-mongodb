@@ -16,7 +16,8 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint"
-  ]
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-console": "off"
+  }
 }
