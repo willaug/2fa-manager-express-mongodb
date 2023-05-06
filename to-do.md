@@ -7,10 +7,10 @@
 
 - first step:
   - [x] config mongodb instance
-  - create an user:
-    - [ ] route post /users
-    - [ ] controller createUser
-    - [ ] model createUser
-    - [ ] tests
-
-- [ ] disconnect database instance in sigterms (sigint, sigterm, sigquit, sigbreak)
+  - [x] disconnect database instance sigterm
+  
+- create an user:
+  - [ ] route post /users
+  - [ ] controller createUser
+  - [ ] model createUser
+  - [ ] tests
