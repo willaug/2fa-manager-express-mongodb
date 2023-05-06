@@ -1,7 +1,9 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
+import { config as dotEnvConfig } from 'dotenv';
+import { DatabaseClient } from './core/database';
 
-dotenv.config();
+dotEnvConfig();
+DatabaseClient.connect();
 const app = express();
 
 export default app;
