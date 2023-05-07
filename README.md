@@ -28,8 +28,8 @@ This is a simple 2FA manager API built with Express.js and MongoDB. It provides 
 # Usage
 The API exposes the following endpoints:
 
+- `GET /me` - Get data about authenticated user
 - `POST /users` - Create a new user with 2FA disabled
-- `GET /users/:userId` - Get a user data
 - `POST /users/authenticate` - Authenticate a user and generate a JWT token for subsequent requests
 - `POST /2fa` - Enable 2FA for a user
 - `DELETE /2fa` - Disable 2FA for a user
