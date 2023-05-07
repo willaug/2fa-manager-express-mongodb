@@ -15,7 +15,7 @@ This is a simple 2FA manager API built with Express.js and MongoDB. It provides 
 
 2. Install the dependencies:
 ```bash
-  cd 2fa-manager-api
+  cd 2fa-manager-express-mongodb
   npm install
 ```
 
@@ -29,11 +29,12 @@ This is a simple 2FA manager API built with Express.js and MongoDB. It provides 
 The API exposes the following endpoints:
 
 - `POST /users` - Create a new user with 2FA disabled
+- `GET /users/:userId` - Get a user data
 - `POST /users/authenticate` - Authenticate a user and generate a JWT token for subsequent requests
-- `POST /users/:userId/2fa` - Enable 2FA for a user
-- `POST /users/:userId/2fa/code` - Generate a 2FA code for a user
-- `POST /users/:userId/2fa/validate` - Validate a 2FA code for a user
-- `DELETE /users/:userId/2fa` - Disable 2FA for a user
+- `POST /2fa` - Enable 2FA for a user
+- `DELETE /2fa` - Disable 2FA for a user
+- `POST /2fa/code` - Generate a 2FA code for a user
+- `POST /2fa/validate` - Validate a 2FA code for a user
 
 Refer to the API documentation for more details on each endpoint and their required inputs.
 

@@ -40,6 +40,8 @@ jobs:
       DATABASE_HOST: 127.0.0.1
       DATABASE_PORT: 27017
       DATABASE_NAME: 2fa_manager
+      AUTH_SECRET_KEY: example
+      AUTH_DURATION: 4h
 
     steps:
       - name: Checkout code

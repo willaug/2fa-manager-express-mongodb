@@ -19,7 +19,7 @@ class Model {
   constructor() {
     this.schema = new Schema<User>({
       name: { type: String, required: true },
-      email: { type: String, required: true },
+      email: { type: String, required: true, unique: true },
       updatedAt: { type: Date, required: true, default: Date.now },
       createdAt: { type: Date, required: true, default: Date.now },
       password: { type: String, required: true },

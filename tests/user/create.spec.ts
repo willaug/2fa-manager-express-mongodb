@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { disconnect } from 'mongoose';
-import app from '../src/app';
-import { UserModel } from '../src/models/userModel';
+import app from '../../src/app';
+import { UserModel } from '../../src/models/userModel';
 
 describe('POST /users', () => {
   afterAll(() => disconnect());
@@ -37,11 +37,14 @@ describe('POST /users', () => {
       });
 
     expect(response.status).toBe(409);
-    expect(response.body).toEqual({
-      errors: [{
-        field: 'email',
-        error: 'emailAlreadyExists',
-      }],
+    expect(response.body).toStrictEqual({
+      error: 'EMAIL_ALREADY_EXISTS',
+      details: [
+        {
+          field: 'email',
+          error: 'unique',
+        },
+      ],
     });
   });
 
@@ -54,8 +57,9 @@ describe('POST /users', () => {
       });
 
     expect(response.status).toBe(400);
-    expect(response.body).toEqual({
-      errors: [
+    expect(response.body).toStrictEqual({
+      error: 'INVALID_PAYLOAD',
+      details: [
         {
           field: 'name',
           error: 'required',
@@ -86,7 +90,7 @@ describe('POST /users', () => {
       });
 
     expect(response.status).toBe(500);
-    expect(response.body).toEqual({
+    expect(response.body).toStrictEqual({
       error: 'Internal Server Error',
     });
   });

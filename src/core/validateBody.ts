@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-interface ValidateBodyRules {
+interface Rules {
   [key: string]: {
     type: 'string' | 'number';
     isEmail?: boolean;
@@ -8,29 +8,39 @@ interface ValidateBodyRules {
   }
 }
 
-interface ErrorResult {
+interface DetailedError {
   field: string;
   error: string;
 }
 
-export function validateBody(body: Record<string, any>, rules: ValidateBodyRules): ErrorResult[] {
-  const errors = [] as ErrorResult[];
+interface ErrorResult {
+  error: string;
+  details: DetailedError[];
+}
+
+export function validateBody(body: Record<string, any>, rules: Rules): ErrorResult | null {
+  const incorrectFields = [] as DetailedError[];
 
   Object.entries(rules).forEach(([key, rule]) => {
     if (rule.isRequired && (body[key] === null || body[key] === undefined)) {
-      errors.push({ field: key, error: 'required' });
+      incorrectFields.push({ field: key, error: 'required' });
       return;
     }
 
     if (typeof body[key] !== rule.type) {
-      errors.push({ field: key, error: 'invalidType' });
+      incorrectFields.push({ field: key, error: 'invalidType' });
       return;
     }
 
     if (rule.isEmail && !validator.isEmail(body[key])) {
-      errors.push({ field: key, error: 'invalidEmail' });
+      incorrectFields.push({ field: key, error: 'invalidEmail' });
     }
   });
 
-  return errors;
+  if (!incorrectFields.length) return null;
+
+  return {
+    error: 'INVALID_PAYLOAD',
+    details: incorrectFields,
+  };
 }
