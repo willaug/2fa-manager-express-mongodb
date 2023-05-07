@@ -13,4 +13,7 @@
   - [x] route post /users
   - [x] controller user
   - [x] model user
-  - [ ] tests
+  - [x] tests
+
+- ci:
+  - [x] implement workflows

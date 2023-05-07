@@ -9,6 +9,7 @@
     "commit": "npx cz",
     "start": "npm run build && node dist/src/index",
     "dev": "ts-node-dev src/index --swc --transpileOnly",
+    "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "test": "ts-node seeds/index && jest --detectOpenHandles"
   },

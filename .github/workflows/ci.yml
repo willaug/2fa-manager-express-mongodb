@@ -1,0 +1,60 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: npm run lint
+
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+        mongodb-version: [4.4]
+
+    env:
+      API_PORT: 3000
+      DATABASE_PASSWORD: test
+      DATABASE_USERNAME: willaug
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_PORT: 27017
+      DATABASE_NAME: 2fa_manager
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.9.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-username: willaug
+          mongodb-password: test
+          mongodb-db: 2fa_manager
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
