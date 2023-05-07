@@ -6,9 +6,4 @@ export default {
   coverageProvider: 'v8',
   testEnvironment: 'node',
   coverageDirectory: 'coverage',
-  globals: {
-    'ts-jest': {
-      isolatedModules: true,
-    },
-  },
 };

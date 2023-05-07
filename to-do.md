@@ -10,7 +10,7 @@
   - [x] disconnect database instance sigterm
   
 - create an user:
-  - [ ] route post /users
-  - [ ] controller createUser
-  - [ ] model createUser
+  - [x] route post /users
+  - [x] controller user
+  - [x] model user
   - [ ] tests
